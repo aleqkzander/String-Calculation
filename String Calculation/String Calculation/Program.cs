@@ -4,7 +4,8 @@ bool isActive = true;
 
 while (isActive)
 {
-    Console.Write("\nProvide an expression: ");
+    Console.Write("Provide an expression: ");
     string input = Console.ReadLine()!;
-    ExpressionReader.Answer(input);
+    int solution = ExpressionReader.Answer(input);
+    Console.WriteLine("The solution is: " + solution);
 }

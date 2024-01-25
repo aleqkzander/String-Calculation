@@ -12,3 +12,4 @@ D:\String-Calculation\String Calculation\String Calculation\obj\Debug\net8.0\ref
 D:\String-Calculation\String Calculation\String Calculation\obj\Debug\net8.0\String Calculation.pdb
 D:\String-Calculation\String Calculation\String Calculation\obj\Debug\net8.0\String Calculation.genruntimeconfig.cache
 D:\String-Calculation\String Calculation\String Calculation\obj\Debug\net8.0\ref\String Calculation.dll
+D:\String-Calculation\String Calculation\String Calculation\obj\Debug\net8.0\String Calculation.sourcelink.json

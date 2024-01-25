@@ -1,58 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+
 namespace String_Calculation
 {
-    public class ExpressionReader
+    public partial class ExpressionReader
     {
-        private static readonly string _startCommand = "What is";
-
-        public static void Answer(string input)
+        public static int Answer(string promt)
         {
-            if (StartCommandWasNotProvided(input)) return;
-            if (ExpressionHasNoNumbers(input)) return;
+            return StartSolving(promt);
         }
 
-        private static bool StartCommandWasNotProvided(string input)
+        private static int StartSolving(string promt)
         {
             try
             {
-                if (input.Contains("What is"))
-                {
-                    return false;
-                }
-                else
-                {
-                    ArgumentValidator.UnsupportedQuestion(input);
-                    return true;
-                }
+                string expression = ExtractExpression(promt);
+                return SolveMathExpression(expression);
             }
-            catch (ArgumentException exception)
+            catch
             {
-                Console.WriteLine(exception);
-                return true;
+                throw;
             }
         }
 
-        private static bool ExpressionHasNoNumbers(string input)
+        private static string ExtractExpression(string promt)
         {
-            if (!Regex.IsMatch(input, @"\d+"))
-            {
-                Console.WriteLine($"Your expression needs a least one number");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            // We make sure input has a valid structure
+            if (!promt.Contains("What is")) throw new ArgumentException();
+            if (!promt.Contains("?")) throw new ArgumentException();
+
+            // We make sure input has numbers by using a verbatim string literal
+            if (!Regex.IsMatch(promt, @"-?\d+")) throw new ArgumentException();
+
+            // Great we can extract the expression
+            string expression = promt.Replace("What is ", string.Empty)
+            .Replace("by ", string.Empty)
+            .Replace("?", string.Empty);
+            return expression;
         }
 
-        private static string ExtractExpression(string input)
+        private static int SolveMathExpression(string expression)
         {
-            return input.Replace("What is ", "").Replace("?", "").Trim();
+            string[] parts = expression.Split(' ');
+            if (parts.Length % 2 == 0) throw new ArgumentException();
+
+            // Make sure result is in correct format
+            int result = int.TryParse(parts[0], out int parsedResult) ? parsedResult : throw new ArgumentException();
+
+            for (int i = 1; i < parts.Length; i += 2)
+            {
+                // Make sure operand is in correct format
+                int operand = (i + 1 < parts.Length && int.TryParse(parts[i + 1], out operand)) ? operand : throw new ArgumentException();
+
+                switch (parts[i])
+                {
+                    case "plus":
+                        result += operand;
+                        break;
+
+                    case "minus":
+                        result -= operand;
+                        break;
+
+                    case "multiplied":
+                        result *= operand;
+                        break;
+
+                    case "divided":
+                        if (operand != 0) result /= operand;
+
+                        // No one can divide by zero except for god
+                        else throw new ArgumentException();
+                        break;
+
+                    // Invalid operator
+                    default: throw new ArgumentException();
+                }
+            }
+
+            return result;
         }
-
-
-
     }
 }
