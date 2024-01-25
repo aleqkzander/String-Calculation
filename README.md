@@ -11,7 +11,7 @@ The input strings will follow a specific pattern:
 The operands and operators in the expression will always be separated by spaces.
 
 - The code should work for simple examples: When the input string is What is 5? then the expected result is 5.
-- The code also should work for simple operations: When the input string is What is 1 plus 1? then the expected result is 2
+- The code also should work for simple operations: When the input string is What is 1 plus 1? Then the expected result is 2.
 - When the input string is What is 53 plus 2? then the expected result is 55.
 - When the input string is What is 4 minus -12? and the expected result is 16.
 - When the input string is What is -3 multiplied by 25? and the expected result is -75.
