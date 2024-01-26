@@ -1,41 +1,52 @@
-# Scenario 1: Calculate from a String
-In this challenge you will implement the Answer method that can make simple calculations from a given string.
+# Mathematical Expression Evaluator
 
-The input strings will follow a specific pattern: 
-- What is [expression]? where [expression] represents a valid mathematical expression involving
-- addition
-- subtraction
-- multiplication
-- division 
+## Scenario 1: Calculate from a String
 
-The operands and operators in the expression will always be separated by spaces.
+In this challenge, the `Answer` method that can perform simple calculations from a given string.
 
-- The code should work for simple examples: When the input string is What is 5? then the expected result is 5.
-- The code also should work for simple operations: When the input string is What is 1 plus 1? Then the expected result is 2.
-- When the input string is What is 53 plus 2? then the expected result is 55.
-- When the input string is What is 4 minus -12? and the expected result is 16.
-- When the input string is What is -3 multiplied by 25? and the expected result is -75.
-- When the input string is What is 33 divided by -3? and the expected result is -11.
+The input strings follow a specific pattern: `What is [expression]?` where `[expression]` represents a valid mathematical expression involving addition, subtraction, multiplication, and division. The operands and operators in the expression will always be separated by spaces.
 
-This should also work for other examples too.
+### Examples:
 
+- Input: `What is 5?` 
+  - Expected Result: `5`
 
-# Scenario 2: Multiple Calculations
-Until now we only had simple calculations. 
-In this scenario we will add a second operation to our calculation.
-**We assume that they are chained verbally so all equations are read from left to right. I.e. we ignore the order of operations.**
-- When the input string is What is 1 plus 1 plus 1? then the expected result is 3.
-- When the input string is What is 1 plus 5 minus -2? and the expected result is 8.
-- When the input string is What is -3 plus 7 multiplied by -2? and the expected result is -8.
+- Input: `What is 1 plus 1?`
+  - Expected Result: `2`
 
-This should also work for other examples too.
+- Input: `What is 53 plus 2?`
+  - Expected Result: `55`
 
+- Input: `What is 4 minus -12?`
+  - Expected Result: `16`
 
-# Scenario 3: Exception Handling
-Of course we cannot rely on the correct user input. 
-We have to do some handling of incorrect input strings.
+- Input: `What is -3 multiplied by 25?`
+  - Expected Result: `-75`
 
-An ArgumentException should be thrown when:
-- Unspported operations are used (e.g. What is 52 cubed?)
-- Unsupported questions (e.g. What is Love?, What is the answer to the ultimate question of life, the universe, and everything?)
-- Syntactically incorrect questions (e.g. What is 1 plus?)
+- Input: `What is 33 divided by -3?`
+  - Expected Result: `-11`
+
+## Scenario 2: Multiple Calculations
+
+Now, let's extend our capabilities to handle multiple operations in a chain.
+
+### Examples:
+
+- Input: `What is 1 plus 1 plus 1?`
+  - Expected Result: `3`
+
+- Input: `What is 1 plus 5 minus -2?`
+  - Expected Result: `8`
+
+- Input: `What is -3 plus 7 multiplied by -2?`
+  - Expected Result: `-8`
+
+## Scenario 3: Exception Handling
+
+To handle incorrect input strings, we'll throw an `ArgumentException` for the following cases:
+
+- Unsupported operations (e.g., `What is 52 cubed?`)
+- Unsupported questions (e.g., `What is Love?`, `What is the answer to the ultimate question of life, the universe, and everything?`)
+- Syntactically incorrect questions (e.g., `What is 1 plus?`)
+
+Feel free to explore more examples and contribute to enhancing the functionality!
